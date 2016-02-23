@@ -1,0 +1,22 @@
+{
+  "name": "frontend",
+  "version": "1.0.0",
+  "description": "This is the front end of our app Yeah it is",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ZBuchenau/Cook-Or-Get-Off-The-Crock-Pot-Front-End.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ZBuchenau/Cook-Or-Get-Off-The-Crock-Pot-Front-End/issues"
+  },
+  "homepage": "https://github.com/ZBuchenau/Cook-Or-Get-Off-The-Crock-Pot-Front-End#readme",
+  "devDependencies": {
+    "gulp": "^3.9.1"
+  }
+}
