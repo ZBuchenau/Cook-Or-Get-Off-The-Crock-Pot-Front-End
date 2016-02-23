@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/ZBuchenau/Cook-Or-Get-Off-The-Crock-Pot-Front-End#readme",
   "devDependencies": {
-    "gulp": "^3.9.1"
+    "gulp": "^3.9.1",
+    "gulp-sass": "^2.2.0"
   }
 }
