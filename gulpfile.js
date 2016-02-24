@@ -21,11 +21,11 @@ gulp.task('sass', function() {
 });
 
 // Watch our files
-gulp.task('watch', function() {
-  gulp.watch('scss/*.scss', ['sass']);
-});
+// gulp.task('watch', function() {
+//   gulp.watch('scss/*.scss', ['sass']);
+// });
 
-// Defualt
+// Default
 gulp.task('default', function() {
   var bundler = watchify(browserify({
     entries: ['./src/app.jsx'],
