@@ -1,2 +1,4 @@
-/node_modules
-/bower_components
+node_modules
+public/bower_components
+public/js/main.js
+/public/js/main.js
