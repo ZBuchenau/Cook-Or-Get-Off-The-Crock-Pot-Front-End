@@ -8,20 +8,16 @@ var browserify = require('browserify');
 var watchify = require('watchify');
 var reactify = require('reactify');
 var sass = require('gulp-sass');
+var concat = require('gulp-concat');
 var gulpBrowser = require("gulp-browser");
 
-// gulp.task('gulpBrowserTest', function() {
-//   var stream = gulp.src('./test/*.js')
-//     .pipe(gulpBrowser.browserify())
-//     .pipe(gulp.dest("./test/browserifiedJS/"));
-//   return stream;
-// });
 
 // Compile Our Sass
 gulp.task('sass', function() {
   return gulp.src('scss/*.scss')
     .pipe(sass())
-    .pipe(gulp.dest('dist/css'));
+    .pipe(concat('styles.css'))
+    .pipe(gulp.dest('public/css'));
 });
 
 // Watch our files
@@ -29,6 +25,7 @@ gulp.task('watch', function() {
   gulp.watch('scss/*.scss', ['sass']);
 });
 
+// Defualt
 gulp.task('default', function() {
   var bundler = watchify(browserify({
     entries: ['./src/app.jsx'],
@@ -47,12 +44,13 @@ gulp.task('default', function() {
         .bundle()
         .on('error', gutil.log.bind(gutil, 'Browserify Error')
           .pipe(source('main.js'))
-          .pipe(gulp.dest('./')));
+          .pipe(gulp.dest('./public/js')));
     }
   }
 
   build();
   bundler.on('update', build);
+
 });
 
 
