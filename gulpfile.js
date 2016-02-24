@@ -39,19 +39,18 @@ gulp.task('default', function() {
 
   function build(file) {
     if (file) {
-      gutil.log('recompiling ' + file);
+      gutil.log('Recompiling ' + file);
+    }
       return bundler
         .bundle()
-        .on('error', gutil.log.bind(gutil, 'Browserify Error')
-          .pipe(source('main.js'))
-          .pipe(gulp.dest('./public/js')));
+        .on('error', gutil.log.bind(gutil, 'Browserify Error'))
+        .pipe(source('main.js'))
+        .pipe(gulp.dest('./public/js'));
     }
-  }
 
-  build();
-  bundler.on('update', build);
-
-});
+    build();
+    bundler.on('update', build);
+  });
 
 
 
@@ -61,4 +60,4 @@ gulp.task('default', function() {
 
 
 
-//
+    //
