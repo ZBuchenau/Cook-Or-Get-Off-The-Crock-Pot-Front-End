@@ -1,6 +1,5 @@
 var React = require('react')
-var 
-var helloWorld = require('./hello-world.jsx');
+var nav = require('./nav.jsx');
 
-var element = React.createElement(helloWorld);
+var element = React.createElement(nav);
 ReactDOM.render(element, document.querySelector('.container'));
