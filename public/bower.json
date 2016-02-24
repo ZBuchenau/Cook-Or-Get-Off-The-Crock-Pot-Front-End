@@ -17,7 +17,6 @@
   ],
   "dependencies": {
     "react": "^0.14.7",
-    "material-design-icons": "^2.2.0",
     "bootstrap": "^3.3.6",
     "bootstrap-material-design": "^0.5.8",
     "bootstrap-sass": "^3.3.6",
