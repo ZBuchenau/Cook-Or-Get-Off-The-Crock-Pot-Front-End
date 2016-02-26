@@ -41,6 +41,7 @@
     "react-mixin": "^1.1.0",
     "react-router": "^0.13.2",
     "reqwest": "^1.1.5",
+    "twilio": "^2.9.0",
     "when": "^3.7.2"
   },
   "devDependencies": {
