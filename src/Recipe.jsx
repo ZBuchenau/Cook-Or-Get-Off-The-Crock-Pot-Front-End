@@ -6,11 +6,12 @@ module.exports = React.createClass({
         <div className='recipe-Recipe'>
           <img src={this.props.image} />
           <h3>{this.props.title}</h3>
-          <div>Prep Time: {this.props.prepTime}min</div>
-          <div>By: {this.props.credit}</div>
-          <div>Likes: {this.props.likes}</div>
-          <div>Servings: {this.props.servings}</div>
-          <div>Instructions: {this.props.instructions}</div>
+          <p>Prep Time: {this.props.prepTime}min</p>
+          <p>By: {this.props.credit}</p>
+          <p>Likes: {this.props.likes}</p>
+          <p>Servings: {this.props.servings}</p>
+          <p>Instructions: </p>
+          <a href={this.props.instructions}>{this.props.instructions}</a>
         </div>
       )
     }
