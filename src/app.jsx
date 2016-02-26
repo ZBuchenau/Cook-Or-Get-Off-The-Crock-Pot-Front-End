@@ -14,8 +14,11 @@ var routes = (
     <Route name="login" handler={Login}/>
     <Route name="signup" handler={Signup}/>
     <Route name="home" path="/" handler={Home}/>
+
     <Route name="quote" handler={Quote}/>
     <Route name="meals" handler={RecipeList}/>
+    <Route name="grocery" handler={Quote}/>
+    
   </Route>
 );
 

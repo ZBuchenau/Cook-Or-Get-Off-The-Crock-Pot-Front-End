@@ -1,7 +1,11 @@
 node_modules
 .DS_Store
 npm-debug.log
+<<<<<<< HEAD
 /build/build.js
+=======
+build/build.js
+>>>>>>> f34d34423a04e1b09475ae92ca6f9d390b7597ac
 bower_components
 /public
 public

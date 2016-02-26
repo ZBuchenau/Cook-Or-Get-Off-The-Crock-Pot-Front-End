@@ -1,6 +1,8 @@
 import React from 'react/addons';
 import ReactMixin from 'react-mixin';
 import Auth from '../services/AuthService';
+import RouterContainer from '../services/RouterContainer';
+
 
 export default class Signup extends React.Component {
 
@@ -9,17 +11,25 @@ export default class Signup extends React.Component {
     this.state = {
       username: '',
       password: '',
-      extra: ''
+      phone: ''
     };
   }
 
   signup(e) {
     e.preventDefault();
-    Auth.signup(this.state.user, this.state.password, this.state.extra)
-      .catch(function(err) {
-        alert("There's an error logging in");
-        console.log("Error logging in", err);
+    Auth.signup(this.state.username, this.state.password, this.state.phone)
+      .done(function(data) {
+        console.log(data);
+        if (data === 'success') {
+          RouterContainer.get().transitionTo('/login');
+        } else {
+          alert('Invalid Account');
+        }
       });
+      // .catch(function(err) {
+      //   alert("There's an error logging in");
+      //   console.log("Error logging in", err);
+      // });
   }
 
   render() {
@@ -29,8 +39,7 @@ export default class Signup extends React.Component {
           <div className="col-md-12">
             <div className="well well-sm text-center">
               <h1>Sign Up</h1>
-              <p>
-                Please fill out the form to get started planning out your meals!</p>
+              <p>Please fill out the form to get started planning out your meals!</p>
             </div>
           </div>
         </div>
@@ -58,7 +67,7 @@ export default class Signup extends React.Component {
                     </div>
                     <div className="form-group label-floating">
                       <label htmlFor="phone" className="control-label">Phone Number</label>
-                      <input type="tel" className="form-control" id="phone" valueLink={this.linkState('extra')} />
+                      <input type="tel" className="form-control" id="phone" valueLink={this.linkState('phone')} />
                       <p className="help-block">Express yourself creativly!</p>
                     </div>
                   </div>
