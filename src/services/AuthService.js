@@ -9,6 +9,7 @@ import LoginActions from '../actions/LoginActions';
 class AuthService {
 
   login(username, password) {
+    console.log({username, password});
     return this.handleAuth(when(request({
       url: LOGIN_URL,
       method: 'POST',
