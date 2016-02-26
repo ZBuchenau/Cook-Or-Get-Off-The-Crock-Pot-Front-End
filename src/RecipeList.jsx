@@ -43,7 +43,15 @@ module.exports = React.createClass({
       <div>
         {recipes.map(function(recipe, index){
           return (
-              <Recipe id={recipe.id} key={"item"+index} />
+              <Recipe
+              title={recipe.title}
+              image={recipe.img_url}
+              prepTime={recipe.prep_time}
+              instructions={recipe.instructions}
+              credit={recipe.credit_text}
+              likes={recipe.likes}
+              servings={recipe.servings}
+              key={"item"+index} />
           )
         })
       }
