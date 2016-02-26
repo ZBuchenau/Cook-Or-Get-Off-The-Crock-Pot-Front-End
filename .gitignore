@@ -1,7 +1,7 @@
 node_modules
 .DS_Store
 npm-debug.log
-<<<<<<< HEAD
+/build/build.js
 bower_components
 /public
 public

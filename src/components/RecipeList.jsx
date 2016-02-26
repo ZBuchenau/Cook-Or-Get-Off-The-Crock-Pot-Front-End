@@ -1,6 +1,6 @@
 var React = require('react/addons');
 var Recipe = require('./Recipe.jsx');
-var AddRecipe = require('./AddRecipe.jsx');
+var ShoppingList = require('./ShoppingList.jsx')
 
 var recipes = [
   {
@@ -12,6 +12,16 @@ var recipes = [
     "credit_text": "undefined",
     "likes": 1,
     "servings": 4
+  },
+  {
+    "id": 2,
+    "title": "Fried Anchovies With Sage",
+    "img_url": "https://spoonacular.com/recipeImages/fried_anchovies_with_sage-1.jpg",
+    "prep_time": "60",
+    "instructions": "http://latavolamarcherecipebox.blogspot.com/2009/10/fried-anchovies-with-sage.html",
+    "credit_text": "undefined",
+    "likes": 1,
+    "servings": 0
   },
   {
     "id": 2,
@@ -38,25 +48,29 @@ var recipes = [
 module.exports = React.createClass({
   render:function(){
     return (
-    <div>
-      <h1> Recipe List </h1>
-      <div>
-        {recipes.map(function(recipe, index){
-          return (
-              <Recipe
-              title={recipe.title}
-              image={recipe.img_url}
-              prepTime={recipe.prep_time}
-              instructions={recipe.instructions}
-              credit={recipe.credit_text}
-              likes={recipe.likes}
-              servings={recipe.servings}
-              key={"item"+index} />
-          )
-        })
-      }
+    <div className="container">
+      <div className="col-md-6">
+        <h2 className="text-center"> Recipe List </h2>
+        <div>
+          {recipes.map(function(recipe, index){
+            return (
+                <Recipe
+                title={recipe.title}
+                image={recipe.img_url}
+                prepTime={recipe.prep_time}
+                instructions={recipe.instructions}
+                credit={recipe.credit_text}
+                likes={recipe.likes}
+                servings={recipe.servings}
+                key={"item"+index} />
+            )
+          })
+        }
+        </div>
       </div>
-      <AddRecipe />
+      <div className="col-md-6">
+        <ShoppingList />
+      </div>
     </div>
   )
   }

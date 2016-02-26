@@ -27,10 +27,7 @@ export default class Login extends React.Component {
       <div className="container">
         <div className="jumbotron">
           <h1 className="text-center">Cook or get off the crock pot</h1>
-          <p>This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
-          <p>
-            <a className="btn btn-primary btn-lg">Learn more</a>
-          </p>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
         </div>
         <div className="row">
           <div className="col-md-6">
@@ -46,13 +43,15 @@ export default class Login extends React.Component {
                 <input type="text" className="form-control" id="password" ref="password" valueLink={this.linkState('password')} />
                 <p className="help-block"></p>
               </div>
-              <button type="submit" classNameName="btn btn-default" onClick={this.login.bind(this)}>Login</button>
+              <div className="form-group text-center">
+                <button type="submit" className="btn btn-primary btn-raised" onClick={this.login.bind(this)}>Login</button>
+              </div>
             </form>
           </div>
           <div className="col-md-6">
             <h2>Sign Up</h2>
             <div className="well well-lg">
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
             </div>
           </div>
         </div>
