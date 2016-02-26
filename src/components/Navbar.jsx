@@ -2,7 +2,8 @@ var React = require('react');
 
 module.exports = React.createClass({
   render: function() {
-    return (<div className="navbar navbar-default">
+    return (
+      <div className="navbar navbar-default">
       <div className="container-fluid">
         <div className="navbar-header">
           <button type="button" className="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
@@ -51,6 +52,7 @@ module.exports = React.createClass({
           </ul>
         </div>
       </div>
-    </div>)
+    </div>
+  )
   }
 });
