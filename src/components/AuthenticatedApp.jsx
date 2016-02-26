@@ -2,7 +2,7 @@
 
 import React from 'react';
 import LoginStore from '../stores/LoginStore'
-import { Route, RouteHandler, Link } from 'react-router';
+import {Route, RouteHandler, Link} from 'react-router';
 import AuthService from '../services/AuthService'
 
 export default class AuthenticatedApp extends React.Component {
@@ -12,9 +12,7 @@ export default class AuthenticatedApp extends React.Component {
   }
 
   _getLoginState() {
-    return {
-      userLoggedIn: LoginStore.isLoggedIn()
-    };
+    return {userLoggedIn: LoginStore.isLoggedIn()};
   }
 
   componentDidMount() {
@@ -32,13 +30,24 @@ export default class AuthenticatedApp extends React.Component {
 
   render() {
     return (
-      <div className="container">
-        <nav className="navbar navbar-default">
-          <div className="navbar-header">
-            <a className="navbar-brand" href="/">React Flux app with JWT authentication</a>
+      <div>
+        <div className="navbar navbar-default">
+          <div className="container">
+            <div className="navbar-header">
+              <button type="button" className="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+                <span className="icon-bar"></span>
+                <span className="icon-bar"></span>
+                <span className="icon-bar"></span>
+              </button>
+              <a className="navbar-brand" href="javascript:void(0)">COGOTCP</a>
+            </div>
+            <div className="navbar-collapse collapse navbar-responsive-collapse">
+              <ul className="nav navbar-nav">
+              </ul>
+              {this.headerItems}
+            </div>
           </div>
-          {this.headerItems}
-        </nav>
+        </div>
         <RouteHandler/>
       </div>
     );
@@ -52,27 +61,29 @@ export default class AuthenticatedApp extends React.Component {
   get headerItems() {
     if (!this.state.userLoggedIn) {
       return (
-      <ul className="nav navbar-nav navbar-right">
-        <li>
-          <Link to="login">Login</Link>
-        </li>
-        <li>
-          <Link to="signup">Signup</Link>
-        </li>
-      </ul>)
+        <ul className="nav navbar-nav navbar-right">
+          <li>
+            <Link to="login">Login</Link>
+          </li>
+          <li>
+            <Link to="signup">Signup</Link>
+          </li>
+        </ul>
+      )
     } else {
       return (
-      <ul className="nav navbar-nav navbar-right">
-        <li>
-          <Link to="home">Home</Link>
-        </li>
-        <li>
-          <Link to="grocery">Grocery List</Link>
-        </li>
-        <li>
-          <a href="" onClick={this.logout}>Logout</a>
-        </li>
-      </ul>)
+        <ul className="nav navbar-nav navbar-right">
+          <li>
+            <Link to="home">Home</Link>
+          </li>
+          <li>
+            <Link to="grocery">Grocery List</Link>
+          </li>
+          <li>
+            <a href="" onClick={this.logout}>Logout</a>
+          </li>
+        </ul>
+      )
     }
   }
 }
