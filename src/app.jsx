@@ -17,8 +17,8 @@ var routes = (
 
     <Route name="quote" handler={Quote}/>
     <Route name="meals" handler={RecipeList}/>
-    <Route name="grocery" handler={Quote}/>
-    
+    <Route name="grocery" handler={RecipeList}/>
+
   </Route>
 );
 
