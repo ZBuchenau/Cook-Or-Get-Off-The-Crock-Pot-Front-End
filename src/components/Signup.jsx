@@ -16,7 +16,7 @@ export default class Signup extends React.Component {
 
   signup(e) {
     e.preventDefault();
-    Auth.signup(this.state.user, this.state.password, this.state.phone)
+    Auth.signup(this.state.username, this.state.password, this.state.phone)
       .done(function(data) {
         console.log(data);
         if (data === 'success') {
