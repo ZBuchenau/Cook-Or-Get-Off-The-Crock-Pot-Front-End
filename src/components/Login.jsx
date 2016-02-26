@@ -1,6 +1,7 @@
 import React from 'react/addons';
 import ReactMixin from 'react-mixin';
 import Auth from '../services/AuthService'
+import { Route, RouteHandler, Link } from 'react-router';
 
 export default class Login extends React.Component {
 
@@ -15,6 +16,9 @@ export default class Login extends React.Component {
   login(e) {
     e.preventDefault();
     Auth.login(this.state.user, this.state.password)
+      .then(function() {
+        console.log('asldkfjlasdfkjafsdlkjhadsflkjadsfgladskjhdfsalkjsa');
+      })
       .catch(function(err) {
         alert("There's an error logging in");
         console.log("Error logging in", err);
@@ -52,7 +56,7 @@ export default class Login extends React.Component {
           <div className="col-md-6">
             <h2>Sign Up</h2>
             <div className="well well-lg">
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+              <Link to='signup'>Sign Up</Link>
             </div>
           </div>
         </div>
