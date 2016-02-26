@@ -15,7 +15,7 @@ export default class Login extends React.Component {
 
   login(e) {
     e.preventDefault();
-    Auth.login(this.state.user, this.state.password)
+    Auth.login(this.state.username, this.state.password)
       .then(function() {
         console.log('asldkfjlasdfkjafsdlkjhadsflkjadsfgladskjhdfsalkjsa');
       })
@@ -39,7 +39,7 @@ export default class Login extends React.Component {
             <form className="well well-lg" action="index.html" method="post">
               <div className="form-group label-floating">
                 <label for="" className="control-label">Username</label>
-                <input type="text" className="form-control" id="" placeholder="" valueLink={this.linkState('user')} />
+                <input type="text" className="form-control" id="" placeholder="" valueLink={this.linkState('username')} />
                 <p className="help-block">Please enter your username</p>
               </div>
               <div className="form-group label-floating">
