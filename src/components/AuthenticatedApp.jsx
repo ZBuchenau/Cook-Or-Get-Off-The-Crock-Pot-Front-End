@@ -39,7 +39,7 @@ export default class AuthenticatedApp extends React.Component {
                 <span className="icon-bar"></span>
                 <span className="icon-bar"></span>
               </button>
-              <a className="navbar-brand" href="javascript:void(0)">COGOTCP</a>
+              <Link className="navbar-brand" to="/">COGOTCP</Link>
             </div>
             <div className="navbar-collapse collapse navbar-responsive-collapse">
               <ul className="nav navbar-nav">
