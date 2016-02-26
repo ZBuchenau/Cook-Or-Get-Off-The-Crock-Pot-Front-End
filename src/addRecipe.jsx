@@ -5,8 +5,8 @@ module.exports = React.createClass({
       return (
         <div className='recipe-addRecipe'>
          <form>
-          <input />
-          <button> Add Recipe </button>
+            <input />
+            <button> Add Recipe </button>
          </form>
         </div>
       )
