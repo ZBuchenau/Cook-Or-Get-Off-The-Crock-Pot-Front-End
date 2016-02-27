@@ -82,22 +82,28 @@ var RecipeList = React.createClass({
           })
         }
         </div>
-        <div>
+        </div>
+        <div className='col-md-6'>
+          <ul>
           {this.state.list.map(function(recipe, recipeIndex){
-            recipe.forEach(function(item, index) {
-              console.log(item);
+            return recipe.map(function(item, index) {
+              item.amount = Math.ceil(item.amount);
               return (
-                  <p key={"item"+index} >{item.name}</p>
+
+                    <ShoppingList
+                    name={item.name}
+                    amount={item.amount}
+                    aisle={item.aisle}
+                    unit={item.unit}
+                    key={"item"+index} />
+
               )
             })
             })
         }
+        </ul>
         </div>
       </div>
-      <div className="col-md-6">
-        <ShoppingList />
-      </div>
-    </div>
   )
   }
 })
