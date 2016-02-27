@@ -14,6 +14,50 @@ var RecipeList = React.createClass({
       list: []
     };
   },
+  sendText(phoneNumber) {
+    var today = new Date();
+    var dd = today.getDate();
+    var mm = today.getMonth() + 1; //January is 0!
+    var yyyy = today.getFullYear();
+    if (dd < 10) {
+      dd = '0' + dd
+    }
+    if (mm < 10) {
+      mm = '0' + mm
+    }
+    today = mm + '/' + dd + '/' + yyyy;
+    var message = "Your Shopping List for " + today + "\n=========================\n";
+    var list = this
+      .getRecipesState()
+      .list;
+    list
+      .map(function(recipe, recipeIndex) {
+        return recipe
+          .map(function(item, itemIndex) {
+            message += item.amount;
+            message += item.unit;
+            message += "-" + item.name + "\n";
+            return message;
+          });
+      });
+    request({
+      url: 'http://localhost:3001/users/protected/text',
+      method: 'POST',
+      crossOrigin: true,
+      type: 'json',
+      data: {
+        phone: phoneNumber,
+        message: message
+      },
+        headers: {
+          'Authorization': 'Bearer ' + LoginStore.jwt
+        }
+      })
+      .then(function(resopnse) {
+        alert(response);
+
+      });
+  },
   requestRecipes(amount) {
     request({
       url: 'http://localhost:3001/recipes/random',
@@ -21,13 +65,12 @@ var RecipeList = React.createClass({
       crossOrigin: true,
       type: 'json',
       data: {
-        amount: amount,
+        amount: amount
       },
       headers: {
         'Authorization': 'Bearer ' + LoginStore.jwt
       }
-    })
-    .then((response) => {
+    }).then((response) => {
       RecipesActions.gotRecipes(response);
       this.setState(this.getRecipesState());
       this.requestList();
@@ -40,13 +83,12 @@ var RecipeList = React.createClass({
       crossOrigin: true,
       type: 'json',
       data: {
-        recipes: JSON.stringify(this.getRecipesState().recipes),
+        recipes: JSON.stringify(this.getRecipesState().recipes)
       },
       headers: {
         'Authorization': 'Bearer ' + LoginStore.jwt
       }
-    })
-    .then((response) => {
+    }).then((response) => {
       RecipesActions.gotList(response);
       this.setState(this.getRecipesState());
     });
@@ -60,56 +102,59 @@ var RecipeList = React.createClass({
       list: RecipesStore.list
     };
   },
-  render: function(){
+  render: function() {
     return (
-    <div className="container">
-      <div className="row">
+      <div className="container">
         <div className="row">
-          <button className="btn btn-primary btn-block btn-raised"onClick={this.requestRecipes.bind(this, 8)}>Get Recipes</button>
-        </div>
-      <div className="col-md-6">
-        <h2 className="text-center"> Recipe List </h2>
-        <div>
-          {this.state.recipes.map(function(recipe, index){
-            return (
-                <Recipe
-                title={recipe.title}
-                image={recipe.img_url}
-                prepTime={recipe.prep_time}
-                instructions={recipe.instructions}
-                credit={recipe.credit_text}
-                likes={recipe.likes}
-                servings={recipe.servings}
-                key={"item"+index} />
-            )
-          })
-        }
-        </div>
-        </div>
-        <div className="col-md-6">
-          <h2 className="text-center"> Grocery List </h2>
-          <ul className="list-group well well-sm">
-          {this.state.list.map(function(recipe, recipeIndex){
-            return recipe.map(function(item, index) {
-              item.amount = Math.ceil(item.amount);
-              return (
+          <div className="row">
+            <button className="btn btn-primary btn-block btn-raised" onClick={this
+              .requestRecipes
+              .bind(this, 8)}>Get Recipes</button>
+          </div>
+          <div className="col-md-6">
+            <h2 className="text-center">
+              Recipe List
+            </h2>
+            <div>
+              {this
+                .state
+                .recipes
+                .map(function (recipe, index) {
+                  return (
+                    <Recipe title={recipe.title} image={recipe.img_url} prepTime={recipe.prep_time} instructions={recipe.instructions} credit={recipe.credit_text} likes={recipe.likes} servings={recipe.servings} key={"item" + index}/>
+                  )
+                })
+}
+            </div>
+          </div>
+          <div className="col-md-6">
+            <h2 className="text-center">
+              Grocery List
+            </h2>
+            <button className="btn btn-primary btn-block btn-raised" onClick={this
+              .sendText
+              .bind(this, 9709994223)}>Send</button>
+            <ul className="list-group well well-sm">
+              {this
+                .state
+                .list
+                .map(function (recipe, recipeIndex) {
+                  return recipe
+                    .map(function (item, index) {
+                      item.amount = Math.ceil(item.amount);
+                      return (
 
-                    <ShoppingList
-                    name={item.name}
-                    amount={item.amount}
-                    aisle={item.aisle}
-                    unit={item.unit}
-                    key={"item"+index} />
+                        <ShoppingList name={item.name} amount={item.amount} aisle={item.aisle} unit={item.unit} key={"item" + index}/>
 
-              )
-            })
-            })
-        }
-        </ul>
+                      )
+                    })
+                })
+}
+            </ul>
+          </div>
         </div>
       </div>
-      </div>
-  )
+    )
   }
 })
 
