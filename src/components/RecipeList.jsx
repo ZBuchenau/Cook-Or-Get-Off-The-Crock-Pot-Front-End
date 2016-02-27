@@ -63,9 +63,12 @@ var RecipeList = React.createClass({
   render: function(){
     return (
     <div className="container">
+      <div className="row">
+        <div className="row">
+          <button className="btn btn-primary btn-block btn-raised"onClick={this.requestRecipes.bind(this, 8)}>Get Recipes</button>
+        </div>
       <div className="col-md-6">
         <h2 className="text-center"> Recipe List </h2>
-        <button onClick={this.requestRecipes.bind(this, 5)}>Get Recipes</button>
         <div>
           {this.state.recipes.map(function(recipe, index){
             return (
@@ -83,8 +86,9 @@ var RecipeList = React.createClass({
         }
         </div>
         </div>
-        <div className='col-md-6'>
-          <ul>
+        <div className="col-md-6">
+          <h2 className="text-center"> Grocery List </h2>
+          <ul className="list-group well well-sm">
           {this.state.list.map(function(recipe, recipeIndex){
             return recipe.map(function(item, index) {
               item.amount = Math.ceil(item.amount);
@@ -103,6 +107,7 @@ var RecipeList = React.createClass({
         }
         </ul>
         </div>
+      </div>
       </div>
   )
   }
