@@ -10,7 +10,8 @@ import request from 'reqwest';
 var RecipeList = React.createClass({
   getInitialState: function() {
     return {
-      recipes: []
+      recipes: [],
+      list: []
     };
   },
   requestRecipes(amount) {
@@ -27,9 +28,9 @@ var RecipeList = React.createClass({
       }
     })
     .then((response) => {
-      console.log(response);
       RecipesActions.gotRecipes(response);
       this.setState(this.getRecipesState());
+      this.requestList();
     });
   },
   requestList() {
@@ -39,19 +40,24 @@ var RecipeList = React.createClass({
       crossOrigin: true,
       type: 'json',
       data: {
-        recipes: this.getRecipesState(),
+        recipes: JSON.stringify(this.getRecipesState().recipes),
       },
       headers: {
         'Authorization': 'Bearer ' + LoginStore.jwt
       }
     })
+    .then((response) => {
+      RecipesActions.gotList(response);
+      this.setState(this.getRecipesState());
+    });
   },
   _onChange() {
     this.setState(this.getRecipesState());
   },
   getRecipesState() {
     return {
-      recipes: RecipesStore.recipes
+      recipes: RecipesStore.recipes,
+      list: RecipesStore.list
     };
   },
   render: function(){
@@ -74,6 +80,17 @@ var RecipeList = React.createClass({
                 key={"item"+index} />
             )
           })
+        }
+        </div>
+        <div>
+          {this.state.list.map(function(recipe, recipeIndex){
+            recipe.forEach(function(item, index) {
+              console.log(item);
+              return (
+                  <p key={"item"+index} >{item.name}</p>
+              )
+            })
+            })
         }
         </div>
       </div>
