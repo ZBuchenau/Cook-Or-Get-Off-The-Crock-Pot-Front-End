@@ -1,74 +1,76 @@
 var React = require('react/addons');
 var Recipe = require('./Recipe.jsx');
-var ShoppingList = require('./ShoppingList.jsx')
+var ShoppingList = require('./ShoppingList.jsx');
+import RecipesStore from '../stores/recipesStore.js';
+import RecipesActions from '../actions/recipesActions';
+import LoginStore from '../stores/LoginStore.js';
+import {RECIPE_URL} from '../constants/recipeConstants.js';
+import request from 'reqwest';
 
-var recipes = [
-  {
-    "id": 9,
-    "title": "Orecchiette, Broccoli Raab & Anchovies",
-    "img_url": "https://spoonacular.com/recipeImages/orecchiette-broccoli-raab-anchovies-2-8.jpg",
-    "prep_time": "45",
-    "instructions": "http://www.finecooking.com/recipes/orecchiette-broccoli-raab-anchovies.aspx ",
-    "credit_text": "undefined",
-    "likes": 1,
-    "servings": 4
-  },
-  {
-    "id": 2,
-    "title": "Fried Anchovies With Sage",
-    "img_url": "https://spoonacular.com/recipeImages/fried_anchovies_with_sage-1.jpg",
-    "prep_time": "60",
-    "instructions": "http://latavolamarcherecipebox.blogspot.com/2009/10/fried-anchovies-with-sage.html",
-    "credit_text": "undefined",
-    "likes": 1,
-    "servings": 0
-  },
-  {
-    "id": 2,
-    "title": "Fried Anchovies With Sage",
-    "img_url": "https://spoonacular.com/recipeImages/fried_anchovies_with_sage-1.jpg",
-    "prep_time": "60",
-    "instructions": "http://latavolamarcherecipebox.blogspot.com/2009/10/fried-anchovies-with-sage.html",
-    "credit_text": "undefined",
-    "likes": 1,
-    "servings": 0
-  },
-  {
-    "id": 6,
-    "title": "Bread, Butter And Anchovies",
-    "img_url": "https://spoonacular.com/recipeImages/bread_butter_and_anchovies-5.jpg",
-    "prep_time": "3",
-    "instructions": "http://en.julskitchen.com/tuscany/grandma-mennas-kitchen-bread-butter-and-anchovies",
-    "credit_text": "Juls Kitchen",
-    "likes": 0,
-    "servings": 0
-  }
-];
-
-module.exports = React.createClass({
+var RecipeList = React.createClass({
   getInitialState: function() {
-    return {recipes: {}};
+    return {
+      recipes: []
+    };
   },
-  signup: function(e) {
-    e.preventDefault();
-    
+  requestRecipes(amount) {
+    request({
+      url: 'http://localhost:3001/recipes/random',
+      method: 'POST',
+      crossOrigin: true,
+      type: 'json',
+      data: {
+        amount: amount,
+      },
+      headers: {
+        'Authorization': 'Bearer ' + LoginStore.jwt
+      }
+    })
+    .then((response) => {
+      console.log(response);
+      RecipesActions.gotRecipes(response);
+      this.setState(this.getRecipesState());
+    });
   },
-  render:function(){
+  requestList() {
+    request({
+      url: 'http://localhost:3001/recipes/shopping-list',
+      method: 'POST',
+      crossOrigin: true,
+      type: 'json',
+      data: {
+        recipes: this.getRecipesState(),
+      },
+      headers: {
+        'Authorization': 'Bearer ' + LoginStore.jwt
+      }
+    })
+  },
+  _onChange() {
+    this.setState(this.getRecipesState());
+  },
+  getRecipesState() {
+    return {
+      recipes: RecipesStore.recipes
+    };
+  },
+  render: function(){
     return (
     <div className="container">
       <div className="col-md-6">
         <h2 className="text-center"> Recipe List </h2>
+        <button onClick={this.requestRecipes.bind(this, 5)}>Get Recipes</button>
         <div>
-          {recipes.map(function(recipe, index){
+          {this.state.recipes.map(function(recipe, index){
             return (
                 <Recipe
-                title={this.recipe.title}
-                image={this.recipe.img_url}
-                prepTime={this.recipe.prep_time}
-                instructions={this.recipe.instructions}
-                credit={this.recipe.credit_text}
-                likes={this.recipe.likes}
-                servings={this.recipe.servings}
+                title={recipe.title}
+                image={recipe.img_url}
+                prepTime={recipe.prep_time}
+                instructions={recipe.instructions}
+                credit={recipe.credit_text}
+                likes={recipe.likes}
+                servings={recipe.servings}
                 key={"item"+index} />
             )
           })
@@ -82,3 +84,5 @@ module.exports = React.createClass({
   )
   }
 })
+
+module.exports = RecipeList;
