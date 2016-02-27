@@ -46,6 +46,13 @@ var recipes = [
 ];
 
 module.exports = React.createClass({
+  getInitialState: function() {
+    return {recipes: {}};
+  },
+  signup: function(e) {
+    e.preventDefault();
+    
+  },
   render:function(){
     return (
     <div className="container">
@@ -55,13 +62,13 @@ module.exports = React.createClass({
           {recipes.map(function(recipe, index){
             return (
                 <Recipe
-                title={recipe.title}
-                image={recipe.img_url}
-                prepTime={recipe.prep_time}
-                instructions={recipe.instructions}
-                credit={recipe.credit_text}
-                likes={recipe.likes}
-                servings={recipe.servings}
+                title={this.recipe.title}
+                image={this.recipe.img_url}
+                prepTime={this.recipe.prep_time}
+                instructions={this.recipe.instructions}
+                credit={this.recipe.credit_text}
+                likes={this.recipe.likes}
+                servings={this.recipe.servings}
                 key={"item"+index} />
             )
           })
