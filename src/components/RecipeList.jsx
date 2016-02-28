@@ -121,7 +121,7 @@ var RecipeList = React.createClass({
                     <Recipe title={recipe.title} image={recipe.img_url} prepTime={recipe.prep_time} instructions={recipe.instructions} credit={recipe.credit_text} likes={recipe.likes} servings={recipe.servings} key={"item" + index}/>
                   )
                 })
-}
+              }
             </div>
           </div>
           <div className="col-md-6">
