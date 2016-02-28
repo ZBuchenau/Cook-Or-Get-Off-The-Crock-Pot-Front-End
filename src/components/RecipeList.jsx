@@ -27,19 +27,15 @@ var RecipeList = React.createClass({
     }
     today = mm + '/' + dd + '/' + yyyy;
     var message = "Your Shopping List for " + today + "\n=========================\n";
-    var list = this
-      .getRecipesState()
-      .list;
-    list
-      .map(function(recipe, recipeIndex) {
-        return recipe
-          .map(function(item, itemIndex) {
-            message += item.amount;
-            message += item.unit;
-            message += "-" + item.name + "\n";
-            return message;
-          });
-      });
+    var list = this.getRecipesState().list;
+
+    Object.keys(this.state.list).map(function(key, index, array) {
+        message += RecipesStore.list[key].amount;
+        message += RecipesStore.list[key].unit;
+        message += "-" + key + "\n";
+        return message;
+    });
+
     request({
       url: 'http://localhost:3001/users/protected/text',
       method: 'POST',
@@ -89,6 +85,7 @@ var RecipeList = React.createClass({
         'Authorization': 'Bearer ' + LoginStore.jwt
       }
     }).then((response) => {
+      console.log(response);
       RecipesActions.gotList(response);
       this.setState(this.getRecipesState());
     });
@@ -135,22 +132,19 @@ var RecipeList = React.createClass({
               .sendText
               .bind(this, 9709994223)}>Send</button>
             <ul className="list-group well well-sm">
-              {this
-                .state
-                .list
-                .map(function (recipe, recipeIndex) {
-                  return recipe
-                    .map(function (item, index) {
-                      item.amount = Math.ceil(item.amount);
-                      return (
-
-                        <ShoppingList name={item.name} amount={item.amount} aisle={item.aisle} unit={item.unit} key={"item" + index}/>
-
-                      )
-                    })
+              {
+              Object.keys(this.state.list).map(function(key, index, array) {
+              return (
+                  <ShoppingList
+                    name={key}
+                    amount={RecipesStore.list[key].amount}
+                    unit={RecipesStore.list[key].unit}
+                    key={"list" + key}
+                    />
+                  )
                 })
-}
-            </ul>
+              }
+          </ul>
           </div>
         </div>
       </div>
