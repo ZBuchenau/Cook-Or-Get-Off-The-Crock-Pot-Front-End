@@ -1,12 +1,24 @@
-#main {
-  color: black; }
-  #main a {
-    font-weight: bold; }
-    #main a:hover {
-      color: red; }
+body {
+  background-color: #FAFAFA;
+  color: #424242;
+}
+#navbar-color {
+  background-color: #C62828;
+}
+#button-login {
+  background-color: #689F38;
+}
+#button-signup {
+  background-color: #689F38;
+}
+.material-high {
+  box-shadow: 0 2px 6px rgba(0,0,0,0.5);
+}
 
-.fuck {
-  color: black; }
-
-.new {
-  color: black; }
+.material-low {
+  box-shadow: 0 1px 3px rgba(0,0,0,0.5);
+}
+.material-hover:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 3px 6px rgba(0,0,0,0.5);
+}

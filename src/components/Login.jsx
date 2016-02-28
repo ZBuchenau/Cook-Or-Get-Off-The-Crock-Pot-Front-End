@@ -37,18 +37,18 @@ export default class Login extends React.Component {
           <div className="col-md-6">
             <h2>Login</h2>
             <form className="well well-lg" action="index.html" method="post">
-              <div className="form-group label-floating">
+              <div className="form-group has-success label-floating">
                 <label for="" className="control-label">Username</label>
                 <input type="text" className="form-control" id="" placeholder="" valueLink={this.linkState('username')} />
                 <p className="help-block">Please enter your username</p>
               </div>
-              <div className="form-group label-floating">
+              <div className="form-group has-success label-floating">
                 <label for="" className="control-label">Password</label>
                 <input type="text" className="form-control" id="password" ref="password" valueLink={this.linkState('password')} />
                 <p className="help-block"></p>
               </div>
               <div className="form-group text-center">
-                <button type="submit" className="btn btn-primary btn-raised" onClick={this.login.bind(this)}>Login</button>
+                <button type="submit" className="btn btn-primary btn-raised material-hover" id="button-login" onClick={this.login.bind(this)}>Login</button>
               </div>
             </form>
           </div>
