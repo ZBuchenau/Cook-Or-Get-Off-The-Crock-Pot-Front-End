@@ -1,4 +1,4 @@
-var BASE_URL = 'http://localhost:3001/';
+var BASE_URL = 'http://get-off-the-crock-pot.herokuapp.com/';
 export default {
   BASE_URL: BASE_URL,
   RECIPES_URL: BASE_URL + 'recipes/random',
