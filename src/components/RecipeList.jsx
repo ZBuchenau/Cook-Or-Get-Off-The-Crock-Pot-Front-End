@@ -85,7 +85,6 @@ var RecipeList = React.createClass({
         'Authorization': 'Bearer ' + LoginStore.jwt
       }
     }).then((response) => {
-      console.log(response);
       RecipesActions.gotList(response);
       this.setState(this.getRecipesState());
     });
