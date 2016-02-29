@@ -17,11 +17,10 @@ export default class Login extends React.Component {
     e.preventDefault();
     Auth.login(this.state.username, this.state.password)
       .then(function() {
-        console.log('asldkfjlasdfkjafsdlkjhadsflkjadsfgladskjhdfsalkjsa');
+
       })
       .catch(function(err) {
         alert("There's an error logging in");
-        console.log("Error logging in", err);
       });
   }
 

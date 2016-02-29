@@ -4,15 +4,11 @@ import {
   LOGIN_URL,
   SIGNUP_URL
 } from '../constants/LoginConstants';
+
 import LoginActions from '../actions/LoginActions';
 
 class AuthService {
-
   login(username, password) {
-    console.log({
-      username,
-      password
-    });
     return this.handleAuth(when(request({
       url: LOGIN_URL,
       method: 'POST',
@@ -45,7 +41,6 @@ class AuthService {
     return loginPromise
       .then(function(response) {
         var jwt = response.token;
-        console.log(jwt);
         LoginActions.loginUser(jwt);
         return true;
       });

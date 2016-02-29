@@ -4,7 +4,7 @@ var ShoppingList = require('./ShoppingList.jsx');
 import RecipesStore from '../stores/recipesStore.js';
 import RecipesActions from '../actions/recipesActions';
 import LoginStore from '../stores/LoginStore.js';
-import {RECIPE_URL} from '../constants/recipeConstants.js';
+import {RECIPES_URL, LIST_URL, TEXT_URL} from '../constants/recipeConstants.js';
 import request from 'reqwest';
 import jwt_decode from 'jwt-decode';
 
@@ -30,14 +30,14 @@ var RecipeList = React.createClass({
     var message = "Your Shopping List for " + today + "\n=========================\n";
     var list = this.getRecipesState().list;
     Object.keys(this.state.list).map(function(key, index, array) {
-        message += RecipesStore.list[key].amount;
-        message += RecipesStore.list[key].unit;
-        message += "-" + key + "\n";
+        message += key + " - ";
+        message += RecipesStore.list[key].amount + " ";
+        message += RecipesStore.list[key].unit + "\n";
         return message;
     });
 
     request({
-      url: 'http://localhost:3001/users/protected/text',
+      url: TEXT_URL,
       method: 'POST',
       crossOrigin: true,
       type: 'json',
@@ -56,7 +56,7 @@ var RecipeList = React.createClass({
   },
   requestRecipes(amount) {
     request({
-      url: 'http://localhost:3001/recipes/random',
+      url: RECIPES_URL,
       method: 'POST',
       crossOrigin: true,
       type: 'json',
@@ -74,7 +74,7 @@ var RecipeList = React.createClass({
   },
   requestList() {
     request({
-      url: 'http://localhost:3001/recipes/shopping-list',
+      url: LIST_URL,
       method: 'POST',
       crossOrigin: true,
       type: 'json',
@@ -112,12 +112,16 @@ var RecipeList = React.createClass({
               Recipe List
             </h2>
             <div>
-              {this
-                .state
-                .recipes
-                .map(function (recipe, index) {
+              {this.state.recipes.map(function (recipe, index) {
                   return (
-                    <Recipe title={recipe.title} image={recipe.img_url} prepTime={recipe.prep_time} instructions={recipe.instructions} credit={recipe.credit_text} likes={recipe.likes} servings={recipe.servings} key={"item" + index}/>
+                    <Recipe title={recipe.title}
+                    image={recipe.img_url}
+                    prepTime={recipe.prep_time}
+                    instructions={recipe.instructions}
+                    credit={recipe.credit_text}
+                    likes={recipe.likes}
+                    servings={recipe.servings}
+                    key={"item" + index}/>
                   )
                 })
               }
@@ -132,13 +136,16 @@ var RecipeList = React.createClass({
             <ul className="list-group well well-sm">
               {
               Object.keys(this.state.list).map(function(key, index, array) {
+                if(RecipesStore.list[key].amount == 0) {
+                  RecipesStore.list[key].amount = '';
+                  RecipesStore.list[key].unit = '';
+                }
               return (
                   <ShoppingList
                     name={key}
                     amount={RecipesStore.list[key].amount}
                     unit={RecipesStore.list[key].unit}
-                    key={"list" + key}
-                    />
+                    key={"list" + key}/>
                   )
                 })
               }
