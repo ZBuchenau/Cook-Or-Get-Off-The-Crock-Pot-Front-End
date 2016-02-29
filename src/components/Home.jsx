@@ -12,7 +12,7 @@ export default AuthenticatedComponent(class Home extends React.Component {
             <div className="well well-sm">
               <h1 className="text-center">Hello {this.props.user ? this.props.user.username : ''}!</h1>
               <p> Thanks for signing in! To get started with your weekly meal planning head over to <Link to="grocery">the recipe picker</Link> and pick what meals sound good to you.</p>
-              <p> Your number is {jwt_decode(this.props.jwt).phone} and will beuse to text you your shopping list</p>
+              <p> Your number is <strong> { jwt_decode(this.props.jwt).phone } </strong> and will be sent a sms text of your shopping list.</p>
             </div>
           </div>
         </div>

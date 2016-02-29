@@ -31,7 +31,7 @@ export default class AuthenticatedApp extends React.Component {
   render() {
     return (
       <div>
-        <div className="navbar navbar-default material-high" id="navbar-color">
+        <div className="navbar navbar-default material-high navbar-fixed-top" id="navbar-color">
           <div className="container">
             <div className="navbar-header">
               <button type="button" className="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
