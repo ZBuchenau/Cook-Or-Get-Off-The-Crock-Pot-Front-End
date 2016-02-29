@@ -6,7 +6,7 @@ import { Route, RouteHandler, Link } from 'react-router';
 export default class Login extends React.Component {
 
   constructor() {
-    super()
+    super();
     this.state = {
       username: '',
       password: ''
@@ -29,8 +29,8 @@ export default class Login extends React.Component {
 
       <div className="container">
         <div className="jumbotron">
-          <h1 className="text-center">Cook or get off the crock pot</h1>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+          <h1 className="text-center">Cook Or Get Off The Crock Pot</h1>
+          <p>Do you ever get tired of wandering around the store trying to figure out what to cook for dinner? <br/> Do you HATE meal-planning and creating grocery lists?<br/>You'd better Cook Or Get Off The Crock Pot.</p>
         </div>
         <div className="row">
           <div className="col-md-6">
@@ -54,8 +54,8 @@ export default class Login extends React.Component {
           <div className="col-md-6">
             <h2>Sign Up</h2>
             <div className="well well-lg">
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-              <Link to='signup'>Sign Up</Link>
+
+              <Link to='signup'>Sign up Now!<br/> Otherwise, you are dead to us.</Link>
             </div>
           </div>
         </div>
