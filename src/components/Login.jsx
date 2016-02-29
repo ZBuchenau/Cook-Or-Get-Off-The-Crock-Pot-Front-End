@@ -43,7 +43,7 @@ export default class Login extends React.Component {
               </div>
               <div className="form-group has-success label-floating">
                 <label for="" className="control-label">Password</label>
-                <input type="text" className="form-control" id="password" ref="password" valueLink={this.linkState('password')} />
+                <input type="password" className="form-control" id="password" ref="password" valueLink={this.linkState('password')} />
                 <p className="help-block"></p>
               </div>
               <div className="form-group text-center">
@@ -54,7 +54,6 @@ export default class Login extends React.Component {
           <div className="col-md-6">
             <h2>Sign Up</h2>
             <div className="well well-lg">
-
               <Link to='signup'>Sign up Now!<br/> Otherwise, you are dead to us.</Link>
             </div>
           </div>
