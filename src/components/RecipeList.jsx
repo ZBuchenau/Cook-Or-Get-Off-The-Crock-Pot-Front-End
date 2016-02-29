@@ -6,6 +6,7 @@ import RecipesActions from '../actions/recipesActions';
 import LoginStore from '../stores/LoginStore.js';
 import {RECIPE_URL} from '../constants/recipeConstants.js';
 import request from 'reqwest';
+import jwt_decode from 'jwt-decode';
 
 var RecipeList = React.createClass({
   getInitialState: function() {
@@ -14,7 +15,7 @@ var RecipeList = React.createClass({
       list: []
     };
   },
-  sendText(phoneNumber) {
+  sendText() {
     var today = new Date();
     var dd = today.getDate();
     var mm = today.getMonth() + 1; //January is 0!
@@ -28,7 +29,6 @@ var RecipeList = React.createClass({
     today = mm + '/' + dd + '/' + yyyy;
     var message = "Your Shopping List for " + today + "\n=========================\n";
     var list = this.getRecipesState().list;
-
     Object.keys(this.state.list).map(function(key, index, array) {
         message += RecipesStore.list[key].amount;
         message += RecipesStore.list[key].unit;
@@ -42,7 +42,7 @@ var RecipeList = React.createClass({
       crossOrigin: true,
       type: 'json',
       data: {
-        phone: phoneNumber,
+        phone: jwt_decode(LoginStore._jwt).phone,
         message: message
       },
         headers: {
@@ -104,7 +104,7 @@ var RecipeList = React.createClass({
       <div className="container">
         <div className="row">
           <div className="row">
-            <button className="btn btn-primary btn-block btn-raised" onClick={this
+            <button id="button-recipes" className="btn btn-primary btn-block btn-raised material-hover" onClick={this
               .requestRecipes
               .bind(this, 8)}>Get Recipes</button>
           </div>
@@ -128,9 +128,8 @@ var RecipeList = React.createClass({
             <h2 className="text-center">
               Grocery List
             </h2>
-            <button className="btn btn-primary btn-block btn-raised" onClick={this
-              .sendText
-              .bind(this, 9709994223)}>Send</button>
+            <button id="button-text" className="btn btn-primary btn-block btn-raised material-hover" onClick={this
+              .sendText.bind(this)}>Text me my shopping list!</button>
             <ul className="list-group well well-sm">
               {
               Object.keys(this.state.list).map(function(key, index, array) {

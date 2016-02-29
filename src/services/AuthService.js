@@ -9,7 +9,10 @@ import LoginActions from '../actions/LoginActions';
 class AuthService {
 
   login(username, password) {
-    console.log({username, password});
+    console.log({
+      username,
+      password
+    });
     return this.handleAuth(when(request({
       url: LOGIN_URL,
       method: 'POST',
@@ -27,13 +30,15 @@ class AuthService {
   }
 
   signup(username, password, phone) {
-    return $.ajax(
-      {
-        type: "POST",
-        url: SIGNUP_URL,
-        data: {username, password, phone}
+    return $.ajax({
+      type: "POST",
+      url: SIGNUP_URL,
+      data: {
+        username,
+        password,
+        phone
       }
-    );
+    });
   }
 
   handleAuth(loginPromise) {
